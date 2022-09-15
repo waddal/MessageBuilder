@@ -1,68 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// DATA - abstract this
-const greetings = [
-  `so nice to virtually "meet" you!`,
-  `hope this message reaches you well.`,
-  `thanks for your attention!`,
-];
-
-const skills = ['Javascript', 'React', 'SQL', 'Postgres', 'Jest'];
-
-const initialSenderValues = {
-  firstName: `Alan`,
-  fullName: `Alan Waddell`,
-  email: `alan.waddell.dev@gmail.com`,
-  linkedIn: `https://www.linkedin.com/in/alan-waddell/`,
-  github: `https://github.com/waddal`,
-};
-
-const initialRecieverValues = {
-  recruiterName: '',
-  greeting: greetings[1],
-  role: '',
-  team: '',
-  company: '',
-  whatTheyWant1: '',
-  whatTheyWant2: '',
-  techStack: '',
-};
-
-// set initial values to data pulled from localstorage
-
-const Form = () => {
-  const [senderValues, setSenderValues] = useState(initialSenderValues);
-  const [recieverValues, setRecieverValues] = useState(initialRecieverValues);
-
-  const handleSenderValues = (e) => {
-    const { name, value } = e.target;
-
-    setSenderValues({
-      ...senderValues,
-      [name]: value,
-    });
-  };
-
-  const handleRecieverValues = (e) => {
-    const { name, value } = e.target;
-
-    setRecieverValues({
-      ...recieverValues,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit!');
-  };
-
-  const handleReset = (e) => {
-    e.preventDefault();
-    setRecieverValues(initialRecieverValues);
-    console.log('reset!');
-  };
-
+const Form = ({ formValues, greetings, handleChange, handleSubmit, handleReset }) => {
   return (
     <form onSubmit={handleSubmit}>
       <section>
@@ -73,8 +11,8 @@ const Form = () => {
             type="text"
             placeholder="firstName"
             name="firstName"
-            value={senderValues.firstName}
-            onChange={handleSenderValues}
+            value={formValues.firstName}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -84,19 +22,19 @@ const Form = () => {
             type="text"
             placeholder="fullName"
             name="fullName"
-            value={senderValues.fullName}
-            onChange={handleSenderValues}
+            value={formValues.fullName}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
         <label htmlFor="email">
-          Work Email : &nbsp;
+          Email : &nbsp;
           <input
             type="text"
             placeholder="email"
             name="email"
-            value={senderValues.email}
-            onChange={handleSenderValues}
+            value={formValues.email}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -106,8 +44,19 @@ const Form = () => {
             type="text"
             placeholder="linkedIn"
             name="linkedIn"
-            value={senderValues.linkedIn}
-            onChange={handleSenderValues}
+            value={formValues.linkedIn}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+        </label>
+        <label htmlFor="github">
+          Github : &nbsp;
+          <input
+            type="text"
+            placeholder="github"
+            name="github"
+            value={formValues.github}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -121,8 +70,8 @@ const Form = () => {
             type="text"
             placeholder="Leeroy"
             name="recruiterName"
-            value={recieverValues.recruiterName}
-            onChange={handleRecieverValues}
+            value={formValues.recruiterName}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -144,8 +93,8 @@ const Form = () => {
             type="text"
             placeholder="Software Engineer"
             name="role"
-            value={recieverValues.role}
-            onChange={handleRecieverValues}
+            value={formValues.role}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -155,8 +104,8 @@ const Form = () => {
             type="text"
             placeholder="Tech Support"
             name="team"
-            value={recieverValues.team}
-            onChange={handleRecieverValues}
+            value={formValues.team}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -166,8 +115,8 @@ const Form = () => {
             type="text"
             placeholder="Apple"
             name="company"
-            value={recieverValues.company}
-            onChange={handleRecieverValues}
+            value={formValues.company}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -177,8 +126,8 @@ const Form = () => {
             type="text"
             placeholder="developing RESTful APIs..."
             name="whatTheyWant1"
-            value={recieverValues.whatTheyWant1}
-            onChange={handleRecieverValues}
+            value={formValues.whatTheyWant1}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -188,8 +137,8 @@ const Form = () => {
             type="text"
             placeholder="...creating modular, client-facing components"
             name="whatTheyWant2"
-            value={recieverValues.whatTheyWant2}
-            onChange={handleRecieverValues}
+            value={formValues.whatTheyWant2}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
@@ -199,8 +148,8 @@ const Form = () => {
             type="text"
             placeholder="Languages, frameworks, tools..."
             name="techStack"
-            value={recieverValues.techStack}
-            onChange={handleRecieverValues}
+            value={formValues.techStack}
+            onChange={handleChange}
             autoComplete="off"
           />
         </label>
