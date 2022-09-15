@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const GeneratedMessage = ({ formValues }) => {
   const {
@@ -16,25 +16,33 @@ const GeneratedMessage = ({ formValues }) => {
     whatTheyWant2,
     techStack,
   } = formValues;
-  
-  return (
-    <pre>
-    Hey {recruiterName},
-    
-    I’m {firstName}, {greeting}! 
-    
-    I'm fascinated by the problems the {team} team is solving at {company} — as soon as I saw that you are looking for someone that {whatTheyWant1} and {whatTheyWant2}, I had to reach out!
-      
-    To cut directly to the chase, I really think I am your team’s next {role}. I bring to the table a strong background in {techStack}, as well as experience developing in agile methodology (with fully remote teams, to boot!).
-      
-    I would love a chance to chat more about this team and what you are looking for in your next hire. Are you free for a quick phone call this week?
-      
-    {fullName}
-    {email}
-    {linkedIn}
-    {github}
-    </pre>
-  )
-}
 
-export default GeneratedMessage
+  const generateMessage = () => {
+    return `
+Hey ${recruiterName ? recruiterName : `[Recruiter]`},
+
+I’m ${firstName ? firstName : `[First Name]`}, ${greeting ? greeting : `[greeting]`}! 
+
+I'm fascinated by the problems the ${team ? team : `[team]`} team is solving at ${company ? company : `[company]`} — as soon as I saw that you are looking for someone that ${whatTheyWant1 ? whatTheyWant1 : `[what they want]`} and ${whatTheyWant2 ? whatTheyWant2 : `[what they want]`}, I had to reach out!
+  
+To cut directly to the chase, I really think I am your team’s next ${role ? role : `[role]`}. I bring to the table a strong background in ${techStack ? techStack : `[tech stack]`}, as well as experience developing in agile methodology (with fully remote teams, to boot!).
+  
+I would love a chance to chat more about this team and what you are looking for in your next hire. Are you free for a quick phone call this week?
+  
+${fullName}
+${email}
+${linkedIn}
+${github}
+    `;
+  };
+
+  let response = generateMessage();
+
+  return (
+    <div className="GeneratedMessage">
+      <pre>{response}</pre>
+    </div>
+  );
+};
+
+export default GeneratedMessage;

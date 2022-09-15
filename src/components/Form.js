@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Form = ({ formValues, greetings, handleChange, handleSubmit, handleReset }) => {
+const Form = ({ formValues, greetings, handleChange, handleReset }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <section>
         <h2>Your Info</h2>
         <label htmlFor="firstName">
@@ -77,7 +77,13 @@ const Form = ({ formValues, greetings, handleChange, handleSubmit, handleReset }
         </label>
         <label htmlFor="greeting">
           Greeting : &nbsp;
-          <select>
+          <select
+            type="dropdown"
+            name="greeting"
+            value={formValues.greetings}
+            onChange={handleChange}
+            style={{ border: '2px solid black' }}
+          >
             {greetings.map((item, index) => {
               return (
                 <option key={index} value={item}>
@@ -156,9 +162,6 @@ const Form = ({ formValues, greetings, handleChange, handleSubmit, handleReset }
       </section>
 
       <section>
-        <button onClick={handleSubmit} id="submit">
-          Generate
-        </button>
         <button onClick={handleReset}>Reset</button>
       </section>
     </form>

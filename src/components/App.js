@@ -3,9 +3,9 @@ import Form from './Form';
 import GeneratedMessage from './GeneratedMessage';
 
 const greetings = [
-  `so nice to virtually "meet" you!`,
-  `hope this message reaches you well.`,
-  `thanks for your attention!`,
+  `so nice to virtually "meet" you`,
+  `hope this message reaches you well`,
+  `thanks for your attention`,
 ];
 
 const initialFormValues = {
@@ -17,7 +17,7 @@ const initialFormValues = {
   github: `https://github.com/waddal`,
   //RECRUITER
   recruiterName: '',
-  greeting: greetings[1],
+  greeting: greetings[0],
   role: '',
   team: '',
   company: '',
@@ -38,26 +38,18 @@ const App = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit!');
-  };
-
-
   const handleReset = (e) => {
     e.preventDefault();
-    console.log('reset!');
+    setFormValues(initialFormValues);
   };
 
   return (
     <div className="App">
       <h1>Message Builder</h1>
-      
       <Form
         formValues={formValues}
         greetings={greetings}
         handleChange={handleChange}
-        handleSubmit={handleSubmit}
         handleReset={handleReset}
       />
       <GeneratedMessage formValues={formValues} />
