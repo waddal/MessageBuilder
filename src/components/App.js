@@ -43,6 +43,19 @@ const App = () => {
     setFormValues(initialFormValues);
   };
 
+  const handleCopy = (e) => {
+    const copyText = document.getElementById('message').textContent;
+    const textArea = document.createElement('textarea');
+    textArea.textContent = copyText;
+    document.body.append(textArea);
+    textArea.select();
+    alert('copied');
+    return new Promise((res, rej) => {
+      document.execCommand('copy') ? res() : rej();
+      textArea.remove();
+    });
+  };
+
   return (
     <div className="App">
       <h1>Message Builder</h1>
@@ -51,8 +64,9 @@ const App = () => {
         greetings={greetings}
         handleChange={handleChange}
         handleReset={handleReset}
+        handleCopy={handleCopy}
       />
-      <GeneratedMessage formValues={formValues} />
+      <GeneratedMessage formValues={formValues} handleCopy={handleCopy} />
     </div>
   );
 };

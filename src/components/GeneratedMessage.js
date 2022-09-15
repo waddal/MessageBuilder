@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GeneratedMessage = ({ formValues }) => {
+const GeneratedMessage = ({ handleCopy, formValues }) => {
   const {
     firstName,
     fullName,
@@ -36,11 +36,11 @@ ${github}
     `;
   };
 
-  let response = generateMessage();
+  let message = generateMessage();
 
   return (
     <div className="GeneratedMessage">
-      <pre>{response}</pre>
+      <pre id="message" onClick={handleCopy}>{message}</pre>
     </div>
   );
 };
