@@ -1,6 +1,6 @@
 import React from 'react';
 
-const templates = ['outreach1', 'followUp1'];
+const templates = ['outreach1', 'outreach2', 'followUp1', 'followUp2'];
 
 const ActionContainer = ({ handleReset, handleTemplate }) => {
   return (

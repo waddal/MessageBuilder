@@ -20,8 +20,11 @@ const GeneratedMessage = ({ handleCopy, formValues, template }) => {
   } = formValues;
 
   const generateMessage = (type) => {
-    if(type === 'outreach1')
-    return `Hey ${recruiterName ? recruiterName : `[Recruiter]`},
+    switch (type) {
+
+// OUTREACH
+      case 'outreach1':
+return `Hey ${recruiterName ? recruiterName : `[Recruiter]`},
 
 I’m ${firstName ? firstName : `[First Name]`}, ${greeting ? greeting : `[greeting]`}! 
 
@@ -36,8 +39,33 @@ ${email}
 ${linkedIn}
 ${github}`;
 
-    if(type === 'followUp1') 
-        return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
+      case 'outreach2':
+return `Hi ${recruiterName ? recruiterName : `[Recruiter]`}, 
+
+I'm fascinated by ${company ? company : `[company]`} and your work [WHAT THEY DO]. I came across your profile on LinkedIn when I was "stalking" folks who work at ${company ? company : `[company]`} and wanted to reach out here to introduce myself more formally! 
+
+I recently applied to the open ${role ? role : `[role]`} role and I have so many questions about the ${team ? team : `[team]`} team and what they are looking for in their next hire! Are you involved with interviewing for this role at this time? If not, do you know who might be better to connect with to ask a few questions? 
+
+All the best,
+
+${fullName}`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FOLLOW-UPS
+      case 'followUp1':
+return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
 
 Hope your week is going well! I am excited about what you are building on the ${team ? team : `[team]`} team, so quickly wanted to follow up on this. I would love to know more about what you are looking for in your next ${role ? role : `[role]`} hire. 
 
@@ -47,7 +75,33 @@ All the best,
   
 ${fullName}
 `;
-  }
+      case 'followUp2':
+return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
+
+I remain excited and confident in my fit for the ${role ? role : `[role]`} position. If I can send any additional information at this time, please let me know! 
+
+Looking forward to chatting more,
+
+${fullName}
+`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     setMessage(generateMessage(template));
