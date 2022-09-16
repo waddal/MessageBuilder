@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ formValues, greetings, handleChange, handleReset }) => {
+const Form = ({ formValues, greetings, handleChange }) => {
   return (
     <form>
       <section>
@@ -82,7 +82,7 @@ const Form = ({ formValues, greetings, handleChange, handleReset }) => {
             name="greeting"
             value={formValues.greetings}
             onChange={handleChange}
-            style={{ border: '2px solid black' }}
+            style={{ border: '2px solid grey' }}
           >
             {greetings.map((item, index) => {
               return (
@@ -159,10 +159,6 @@ const Form = ({ formValues, greetings, handleChange, handleReset }) => {
             autoComplete="off"
           />
         </label>
-      </section>
-
-      <section>
-        <button onClick={handleReset}>Reset</button>
       </section>
     </form>
   );

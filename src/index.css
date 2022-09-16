@@ -1,5 +1,6 @@
 * {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #212121;
+  color: #ccc;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -7,6 +8,10 @@
 
 .App {
   padding: 20px;
+}
+
+.top {
+  display: flex;
 }
 
 /* FORM STYLES */
@@ -50,9 +55,25 @@ button {
   background-color: green;
 }
 
+.ActionContainer {
+  display: flex;
+  align-items: center;
+}
+
+.templateSelector {
+  height: 24px;
+}
+
 /* MESSAGE STYLES */
 .GeneratedMessage {
   display: flex;
-  border: 1px solid white;
+  box-sizing: border-box;
+  border: 1px solid transparent;
   overflow: scroll;
+  cursor: pointer;
+  padding:6px;
+}
+
+.GeneratedMessage:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }

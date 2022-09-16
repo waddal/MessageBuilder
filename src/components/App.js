@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ActionContainer from './ActionContainer';
 import Form from './Form';
 import GeneratedMessage from './GeneratedMessage';
 
@@ -26,8 +27,16 @@ const initialFormValues = {
   techStack: '',
 };
 
+const initialTemplate = 'outreach1';
+
 const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [template, setTemplate] = useState(initialTemplate);
+
+  const handleTemplate = (e) => {
+    const { value } = e.target;
+    setTemplate(value);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +58,6 @@ const App = () => {
     textArea.textContent = copyText;
     document.body.append(textArea);
     textArea.select();
-    alert('copied');
     return new Promise((res, rej) => {
       document.execCommand('copy') ? res() : rej();
       textArea.remove();
@@ -59,14 +67,20 @@ const App = () => {
   return (
     <div className="App">
       <h1>Message Builder</h1>
-      <Form
-        formValues={formValues}
-        greetings={greetings}
-        handleChange={handleChange}
-        handleReset={handleReset}
-        handleCopy={handleCopy}
-      />
-      <GeneratedMessage formValues={formValues} handleCopy={handleCopy} />
+      <div className="top">
+        <Form
+          formValues={formValues}
+          greetings={greetings}
+          handleChange={handleChange}
+          handleCopy={handleCopy}
+        />
+        <ActionContainer
+          handleReset={handleReset}
+          handleTemplate={handleTemplate}
+          template={template}
+        />
+      </div>
+      <GeneratedMessage formValues={formValues} handleCopy={handleCopy} template={template} />
     </div>
   );
 };

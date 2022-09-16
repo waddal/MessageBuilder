@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const GeneratedMessage = ({ handleCopy, formValues }) => {
+const GeneratedMessage = ({ handleCopy, formValues, template }) => {
+  const [message, setMessage] = useState();
+
   const {
     firstName,
     fullName,
@@ -17,9 +19,9 @@ const GeneratedMessage = ({ handleCopy, formValues }) => {
     techStack,
   } = formValues;
 
-  const generateMessage = () => {
-    return `
-Hey ${recruiterName ? recruiterName : `[Recruiter]`},
+  const generateMessage = (type) => {
+    if(type === 'outreach1')
+    return `Hey ${recruiterName ? recruiterName : `[Recruiter]`},
 
 I’m ${firstName ? firstName : `[First Name]`}, ${greeting ? greeting : `[greeting]`}! 
 
@@ -32,11 +34,24 @@ I would love a chance to chat more about this team and what you are looking for 
 ${fullName}
 ${email}
 ${linkedIn}
-${github}
-    `;
-  };
+${github}`;
 
-  let message = generateMessage();
+    if(type === 'followUp1') 
+        return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
+
+Hope your week is going well! I am excited about what you are building on the ${team ? team : `[team]`} team, so quickly wanted to follow up on this. I would love to know more about what you are looking for in your next ${role ? role : `[role]`} hire. 
+
+Let me know if you are free for a quick chat in the coming days!
+
+All the best,
+  
+${fullName}
+`;
+  }
+
+  useEffect(() => {
+    setMessage(generateMessage(template));
+  }, [formValues, template]);
 
   return (
     <div className="GeneratedMessage">
