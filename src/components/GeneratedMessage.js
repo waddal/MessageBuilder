@@ -23,6 +23,7 @@ const GeneratedMessage = ({ handleCopy, formValues, template }) => {
     switch (type) {
 
 // OUTREACH
+// OUTREACH
       case 'outreach1':
 return `Hey ${recruiterName ? recruiterName : `[Recruiter]`},
 
@@ -50,19 +51,7 @@ All the best,
 
 ${fullName}`;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// FOLLOW-UPS
 // FOLLOW-UPS
       case 'followUp1':
 return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
@@ -84,20 +73,6 @@ Looking forward to chatting more,
 
 ${fullName}
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       default:
         break;
     }

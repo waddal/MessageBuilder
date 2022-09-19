@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ActionContainer from './ActionContainer';
 import Form from './Form';
 import GeneratedMessage from './GeneratedMessage';
@@ -28,9 +28,11 @@ const initialFormValues = {
 };
 
 const initialTemplate = 'outreach1';
+const initialSubject = `Your engineer has arrived!`;
 
 const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [subject, setSubject] = useState(initialSubject);
   const [template, setTemplate] = useState(initialTemplate);
 
   const handleTemplate = (e) => {
@@ -64,6 +66,23 @@ const App = () => {
     });
   };
 
+  const subjects = [
+    `Interested in learning more about ${formValues.role ? formValues.role : '[role]'} role at ${
+      formValues.company ? formValues.company : '[company]'
+    }!`,
+    `howdy`,
+    `anotha one`,
+  ];
+
+  const handleSubject = () => {
+    let random = subjects[Math.floor(Math.random() * subjects.length)];
+    setSubject(random);
+  };
+
+  useEffect(() => {
+    handleSubject();
+  }, []);
+
   return (
     <div className="App">
       <h1>Message Builder</h1>
@@ -80,6 +99,14 @@ const App = () => {
           template={template}
         />
       </div>
+      <div>
+        <h4>
+          <button onClick={handleSubject}>Subject</button>
+          {subject}
+        </h4>
+      </div>
+
+      <h3>Template({template ? template : 'Template'})</h3>
       <GeneratedMessage formValues={formValues} handleCopy={handleCopy} template={template} />
     </div>
   );
