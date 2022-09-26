@@ -34,6 +34,7 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [subject, setSubject] = useState(initialSubject);
   const [template, setTemplate] = useState(initialTemplate);
+  let [count, setCount] = useState(0);
 
   const handleTemplate = (e) => {
     const { value } = e.target;
@@ -67,20 +68,26 @@ const App = () => {
   };
 
   const subjects = [
-    `Interested in learning more about ${formValues.role ? formValues.role : '[role]'} role at ${
+    `Super excited about ${formValues.company ? formValues.company : '[company]'}!`,
+    `I think I’m your next ${formValues.role ? formValues.role : '[role]'}!`,
+    `Raising my hand for ${formValues.role ? formValues.role : '[role]'}! `,
+    `Re: ${formValues.role ? formValues.role : '[role]'}/${
       formValues.company ? formValues.company : '[company]'
-    }!`,
-    `howdy`,
-    `anotha one`,
+    }`,
   ];
 
   const handleSubject = () => {
-    let random = subjects[Math.floor(Math.random() * subjects.length)];
-    setSubject(random);
+    setCount(count + 1);
+    if (count >= subjects.length) {
+      setCount(0);
+      setSubject(subjects[0]);
+    }
+    setSubject(subjects[count]);
   };
 
   useEffect(() => {
-    handleSubject();
+    let random = subjects[Math.floor(Math.random() * subjects.length)];
+    setSubject(random);
   }, []);
 
   return (
@@ -99,10 +106,11 @@ const App = () => {
           template={template}
         />
       </div>
+
       <div>
         <h4>
           <button onClick={handleSubject}>Subject</button>
-          {subject}
+          {subject ? subject : 'Connect?'}
         </h4>
       </div>
 
