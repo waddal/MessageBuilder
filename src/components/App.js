@@ -34,10 +34,12 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [subject, setSubject] = useState(initialSubject);
   const [template, setTemplate] = useState(initialTemplate);
+  const [highlight, setHighlight] = useState(false);
   let [count, setCount] = useState(0);
 
   const handleTemplate = (e) => {
     const { value } = e.target;
+    if(highlight) setHighlight(false);
     setTemplate(value);
   };
 
@@ -56,6 +58,7 @@ const App = () => {
   };
 
   const handleCopy = (e) => {
+    setHighlight(true);
     const copyText = document.getElementById('message').textContent;
     const textArea = document.createElement('textarea');
     textArea.textContent = copyText;
@@ -86,8 +89,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    let random = subjects[Math.floor(Math.random() * subjects.length)];
-    setSubject(random);
+    setSubject(subjects[Math.floor(Math.random() * subjects.length)]);
   }, []);
 
   return (
@@ -115,7 +117,12 @@ const App = () => {
       </div>
 
       <h3>Template({template ? template : 'Template'})</h3>
-      <GeneratedMessage formValues={formValues} handleCopy={handleCopy} template={template} />
+      <GeneratedMessage
+        formValues={formValues}
+        handleCopy={handleCopy}
+        highlight={highlight}
+        template={template}
+      />
     </div>
   );
 };

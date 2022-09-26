@@ -76,6 +76,10 @@ button {
   padding:6px;
 }
 
-.GeneratedMessage:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
+.active {
+  border: 1px solid lime;
 }
+
+/* .GeneratedMessage:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+} */

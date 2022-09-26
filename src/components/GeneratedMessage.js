@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const GeneratedMessage = ({ handleCopy, formValues, template }) => {
+const GeneratedMessage = ({ handleCopy, highlight, formValues, template }) => {
   const [message, setMessage] = useState();
 
   const {
@@ -22,7 +22,6 @@ const GeneratedMessage = ({ handleCopy, formValues, template }) => {
   const generateMessage = (type) => {
     switch (type) {
 
-// OUTREACH
 // OUTREACH
       case 'outreach1':
 return `Hey ${recruiterName ? recruiterName : `[Recruiter]`},
@@ -51,7 +50,6 @@ All the best,
 
 ${fullName}`;
 
-// FOLLOW-UPS
 // FOLLOW-UPS
       case 'followUp1':
 return `Hi ${recruiterName ? recruiterName : `[Recruiter]`},
@@ -83,7 +81,7 @@ ${fullName}
   }, [formValues, template]);
 
   return (
-    <div className="GeneratedMessage">
+    <div className={highlight ? "GeneratedMessage active" : "GeneratedMessage"}>
       <pre id="message" onClick={handleCopy}>{message}</pre>
     </div>
   );
