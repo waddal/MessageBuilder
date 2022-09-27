@@ -66,6 +66,11 @@ button {
   height: 24px;
 }
 
+.subtitle {
+  display: flex;
+  padding-bottom: 8px;
+}
+
 /* MESSAGE STYLES */
 .GeneratedMessage {
   display: flex;
@@ -73,13 +78,9 @@ button {
   border: 1px solid transparent;
   overflow: scroll;
   cursor: pointer;
-  padding:6px;
+  padding: 6px;
 }
 
 .active {
   border: 1px solid lime;
 }
-
-/* .GeneratedMessage:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-} */

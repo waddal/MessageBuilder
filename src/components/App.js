@@ -39,13 +39,13 @@ const App = () => {
 
   const handleTemplate = (e) => {
     const { value } = e.target;
-    if(highlight) setHighlight(false);
+    if (highlight) setHighlight(false);
     setTemplate(value);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if(highlight) setHighlight(false);
+    if (highlight) setHighlight(false);
 
     setFormValues({
       ...formValues,
@@ -56,7 +56,7 @@ const App = () => {
   const handleReset = (e) => {
     e.preventDefault();
     setFormValues(initialFormValues);
-    if(highlight) setHighlight(false);
+    if (highlight) setHighlight(false);
   };
 
   const handleCopy = (e) => {
@@ -106,19 +106,21 @@ const App = () => {
         />
         <ActionContainer
           handleReset={handleReset}
+          handleSubject={handleSubject}
           handleTemplate={handleTemplate}
           template={template}
         />
       </div>
 
-      <div>
-        <h4>
-          <button onClick={handleSubject}>Subject</button>
-          {subject ? subject : 'Connect?'}
-        </h4>
+      <div className="subtitle">
+        <h3>Subject</h3>
+        <p>: {subject ? subject : 'Connect?'}</p>
       </div>
 
-      <h3>Template({template ? template : 'Template'})</h3>
+      <div className="subtitle">
+        <h3>Template </h3> &nbsp;
+        <p>({template ? template : 'Template'}): </p>
+      </div>
       <GeneratedMessage
         formValues={formValues}
         handleCopy={handleCopy}

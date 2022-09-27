@@ -16,10 +16,11 @@ const templates = [
   'followUp2',
 ];
 
-const ActionContainer = ({ handleReset, handleTemplate }) => {
+const ActionContainer = ({ handleReset, handleSubject, handleTemplate }) => {
   return (
     <div className="ActionContainer">
       <button onClick={handleReset}>Reset</button>
+      <button onClick={handleSubject}>Subject</button>
 
       <select
         className="templateSelector"
