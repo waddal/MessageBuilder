@@ -45,6 +45,7 @@ const App = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if(highlight) setHighlight(false);
 
     setFormValues({
       ...formValues,
@@ -55,6 +56,7 @@ const App = () => {
   const handleReset = (e) => {
     e.preventDefault();
     setFormValues(initialFormValues);
+    if(highlight) setHighlight(false);
   };
 
   const handleCopy = (e) => {
